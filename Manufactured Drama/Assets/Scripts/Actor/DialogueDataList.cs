@@ -1,19 +1,22 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class DialogueDataList : ScriptableObject {
+namespace Actor {
 
-	public int lineIndex;
+	[CreateAssetMenu]
+	public class DialogueDataList : ScriptableObject {
 
-	public List<DialogueLine> lines;
+		public int lineIndex;
 
-	public void PlayLine(AudioSource audioSrc) {
-		audioSrc.clip = lines [lineIndex].audio;
-		audioSrc.Play ();
-	}
+		public List<DialogueLine> lines;
 
-	public string GetLineText() {
-		return lines [lineIndex].text;
+		public void PlayLine(AudioSource audioSrc) {
+			audioSrc.clip = lines [lineIndex].audio;
+			audioSrc.Play ();
+		}
+
+		public string GetLineText() {
+			return lines [lineIndex].text;
+		}
 	}
 }

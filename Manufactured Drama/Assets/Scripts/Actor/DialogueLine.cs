@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class DialogueLine {
+namespace Actor {
+	
+	[System.Serializable]
+	public class DialogueLine {
 
-	public AudioClip audio;
+		public AudioClip audio;
 
-	[TextArea]
-	public string text;
+		[TextArea]
+		public string text;
 
+	}
 }

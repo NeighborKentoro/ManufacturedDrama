@@ -20,11 +20,16 @@ namespace Actor {
 		
 		// Update is called once per frame
 		void Update () {
-			
+			Debug.Log (dialogueData.GetLineText (0));
+			if(!audioSrc.isPlaying)
+				dialogueData.PlayLine (audioSrc, 0);
 		}
 
 		void PlayNextLine() {
-			dialogueData.PlayLine (audioSrc);
+			if(audioSrc.isPlaying) {
+				audioSrc.Stop ();
+			}
+			dialogueData.PlayLine (audioSrc, 0);
 		}
 
 		void OnEnable () {

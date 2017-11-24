@@ -5,6 +5,8 @@ using GameSystems;
 
 namespace Actor {
 
+	public enum ActorName { Kinezumi };
+
 	public class Actor : MonoBehaviour {
 
 		/* The actor's dialogue data for the entire scene */
@@ -13,6 +15,9 @@ namespace Actor {
 		/* The actor's audio source */
 		private AudioSource audioSrc;
 
+		/* The name of the actor, used for getting lines of dialogue */
+		public ActorName actorName;
+
 		// Use this for initialization
 		void Start () {
 			audioSrc = GetComponent<AudioSource> ();
@@ -20,16 +25,14 @@ namespace Actor {
 		
 		// Update is called once per frame
 		void Update () {
-			Debug.Log (dialogueData.GetLineText (0));
-			if(!audioSrc.isPlaying)
-				dialogueData.PlayLine (audioSrc, 0);
+			
 		}
 
 		void PlayNextLine() {
 			if(audioSrc.isPlaying) {
 				audioSrc.Stop ();
 			}
-			dialogueData.PlayLine (audioSrc, 0);
+			dialogueData.PlayLine (audioSrc, GameSystemManager.instance.GetCharacterLineIndex(actorName));
 		}
 
 		void OnEnable () {
@@ -44,10 +47,12 @@ namespace Actor {
 
 		void PauseActor() {
 			Debug.Log ("Pausing Actor");
+			audioSrc.Pause ();
 		}
 
 		void UnPauseActor() {
 			Debug.Log ("Unpausing Actor");
+			audioSrc.UnPause ();
 		}
 	}
 }

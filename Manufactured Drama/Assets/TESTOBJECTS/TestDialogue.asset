@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2ba9fa475465b543847b9617c912842, type: 3}
+  m_Name: TestDialogue
+  m_EditorClassIdentifier: 
+  lines:
+  - audio: {fileID: 0}
+    text: Hey! So I am the first line of text! Woohoo!
+  - audio: {fileID: 0}
+    text: The first line is followed by me, the second line of dialogue text! Hope
+      this still looks ok! If I add at runtime what happens? Nothing?
+  - audio: {fileID: 0}
+    text: And I'm gonna end things off for this test! Thanks for watching this.

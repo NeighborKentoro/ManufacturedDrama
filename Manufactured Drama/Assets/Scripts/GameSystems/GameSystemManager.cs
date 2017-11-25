@@ -16,6 +16,12 @@ namespace GameSystems {
 		/* The instance of the GameSystemManager */
 		public static GameSystemManager instance = null;
 
+		/* the entire list of actors for the scene */
+		private GameObject[] actors;
+
+		/* is the game paused? */
+		private bool isGamePaused = false;
+
 		//Awake is always called before any Start functions
 		void Awake()
 		{
@@ -35,8 +41,31 @@ namespace GameSystems {
 		}
 
 		void Start () {
-			//gameOptions = new GameOptions();
-			//gameState = new GameState();
+			
+		}
+
+		void OnEnable () {
+			EventManager.OnPause += PauseGame;
+			EventManager.UnPause += UnPauseGame;
+		}
+
+		void OnDisable () {
+			EventManager.OnPause -= PauseGame;
+			EventManager.UnPause -= UnPauseGame;
+		}
+
+		#region Event Functions
+		void PauseGame () {
+			isGamePaused = true;
+		}
+
+		void UnPauseGame () {
+			isGamePaused = false;
+		}
+		#endregion
+
+		public bool IsGamePaused () {
+			return isGamePaused;
 		}
 
 		#region GameOptions Functions
@@ -58,7 +87,7 @@ namespace GameSystems {
 		#endregion
 
 		private void GetAllActors() {
-			
+			actors = GameObject.FindGameObjectsWithTag ("Actor");
 		}
 	}
 }

@@ -5,7 +5,8 @@ using GameSystems;
 
 namespace Actor {
 
-	public enum ActorName { Kinezumi, Yuimairu };
+	/* The entire list of characters as enums, for faster comparison than strings */
+	public enum ActorName { Kinezumi, Yuimairu, Honban, Tanji, Usagi, Nemonogatari, Hiro, Seiji, Teacher, Fujiko, The_Nobody, Director };
 
 	public class Actor : MonoBehaviour {
 
@@ -31,11 +32,12 @@ namespace Actor {
 			
 		}
 
-		/* Begans the next dialogue line
+		/* Begins the next dialogue line
 		 * WILLIAM CALL THIS FUNCTION ON THE ANIMATION EVENT */
-		public void BeganDialogue () {
+		public void BeginDialogue () {
 			PlayDialogueLine ();
-			//insert function to pass dialogue text to UI here
+			EventManager.SendNextDialogueActorName (actorName);
+			EventManager.SendNextDialogueText(dialogueData.lines[characterLineIndex].text);
 			NextDialogueLine();
 		}
 
@@ -60,20 +62,20 @@ namespace Actor {
 		void OnEnable () {
 			EventManager.OnPause += PauseActor;
 			EventManager.UnPause += UnPauseActor;
+			EventManager.NextDialogue += BeginDialogue; //REMOVE THESE ONCE ANIMATION EVENTS CALL THIS FUNCTION
 		}
 
 		void OnDisable() {
 			EventManager.OnPause -= PauseActor;
 			EventManager.UnPause -= UnPauseActor;
+			EventManager.NextDialogue -= BeginDialogue; //REMOVE THESE ONCE ANIMATION EVENTS CALL THIS FUNCTION
 		}
 
 		void PauseActor() {
-			Debug.Log ("Pausing Actor");
 			audioSrc.Pause ();
 		}
 
 		void UnPauseActor() {
-			Debug.Log ("Unpausing Actor");
 			audioSrc.UnPause ();
 		}
 	}

@@ -26,7 +26,6 @@ namespace UI {
 		void Start () {
 			textArea = GetComponent<Text> ();
 			textSpeed = GameSystemManager.instance.GameOptions ().textSpeed;
-			text = "Hi William, I hope everything is going smoothly with the project. I haven't finished everything yet, but I'm getting there. I will need to read the lines from the dialogue data, but for now this is hardcoded.";
 			StartCoroutine (PrintTextToUI());
 		}
 		
@@ -38,11 +37,13 @@ namespace UI {
 		void OnEnable () {
 			EventManager.OnPause += PauseUIDialogue;
 			EventManager.UnPause += UnPauseUIDialogue;
+			EventManager.NextDialogueText += GetNextDialogue;
 		}
 
 		void OnDisable() {
 			EventManager.OnPause -= PauseUIDialogue;
 			EventManager.UnPause -= UnPauseUIDialogue;
+			EventManager.NextDialogueText -= GetNextDialogue;
 		}
 
 		#region Event Functions
@@ -54,13 +55,22 @@ namespace UI {
 			dialoguePaused = false;
 		}
 
-
+		/* gets the next line of dialogue text, stops the previous one 
+		 * if it is running and starts reading out the new line */
+		void GetNextDialogue (string text) {
+			StopAllCoroutines ();
+			this.text = text;
+			StartReadingText ();
+		}
 		#endregion
 
 		/* adds the text from the dialogue line to the text UI object */
 		IEnumerator PrintTextToUI() {
-			/* stopping condition */
-			if(charIndex == text.Length) {
+			/* stopping conditions */
+			if(text == null) {
+				yield break;
+			}
+			else if(charIndex >= text.Length) {
 				charIndex = 0;
 				yield break;
 			}
@@ -80,6 +90,7 @@ namespace UI {
 
 		/* The function to begin reading in the text */
 		public void StartReadingText() {
+			charIndex = 0;
 			textArea.text = "";
 			StartCoroutine (PrintTextToUI ());
 		}

@@ -31,6 +31,14 @@ namespace Actor {
 			
 		}
 
+		/* Begans the next dialogue line
+		 * WILLIAM CALL THIS FUNCTION ON THE ANIMATION EVENT */
+		public void BeganDialogue () {
+			PlayDialogueLine ();
+			//insert function to pass dialogue text to UI here
+			NextDialogueLine();
+		}
+
 		public void PlayDialogueLine() {
 			if(audioSrc.isPlaying) {
 				audioSrc.Stop ();

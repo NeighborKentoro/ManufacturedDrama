@@ -7,6 +7,6 @@ namespace GameSystems {
 	public class GameOptions {
 
 		/* the speed the text reads in */
-		public float textSpeed;
+		public float textSpeed = 0.04f;
 	}
 }

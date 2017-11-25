@@ -5,7 +5,7 @@ using GameSystems;
 
 namespace Actor {
 
-	public enum ActorName { Kinezumi };
+	public enum ActorName { Kinezumi, Yuimairu };
 
 	public class Actor : MonoBehaviour {
 
@@ -18,6 +18,9 @@ namespace Actor {
 		/* The name of the actor, used for getting lines of dialogue */
 		public ActorName actorName;
 
+		/* the dialogue line index into the dialogue data list */
+		private int characterLineIndex;
+
 		// Use this for initialization
 		void Start () {
 			audioSrc = GetComponent<AudioSource> ();
@@ -28,11 +31,22 @@ namespace Actor {
 			
 		}
 
-		void PlayNextLine() {
+		public void PlayDialogueLine() {
 			if(audioSrc.isPlaying) {
 				audioSrc.Stop ();
 			}
-			dialogueData.PlayLine (audioSrc, GameSystemManager.instance.GetCharacterLineIndex(actorName));
+			dialogueData.PlayLine (audioSrc, characterLineIndex);
+		}
+
+		public string GetDialogueLineText() {
+			return dialogueData.lines [characterLineIndex].text;
+		}
+
+		/* Increments the index to the next line */
+		public void NextDialogueLine() {
+			characterLineIndex++;
+			if (characterLineIndex == dialogueData.lines.Count)
+				characterLineIndex--;
 		}
 
 		void OnEnable () {

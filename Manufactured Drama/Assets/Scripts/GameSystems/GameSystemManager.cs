@@ -29,13 +29,15 @@ namespace GameSystems {
 				Destroy (gameObject);    
 			//Sets this to not be destroyed when reloading scene
 			DontDestroyOnLoad (gameObject);
+
+			gameOptions = new GameOptions();
+			gameState = new GameState();
 		}
 
 		void Start () {
 			//gameOptions = new GameOptions();
 			//gameState = new GameState();
 		}
-
 
 		#region GameOptions Functions
 		/* returns the gameOptions */
@@ -53,10 +55,10 @@ namespace GameSystems {
 		public GameState GameState () {
 			return gameState;
 		}
-
-		public int GetCharacterLineIndex (ActorName actorName) {
-			return 0;
-		}
 		#endregion
+
+		private void GetAllActors() {
+			
+		}
 	}
 }

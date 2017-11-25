@@ -5,7 +5,8 @@ using UnityEngine;
 using Actor;
 
 namespace GameSystems {
-	
+
+	/* class used for saving the state of the entire game */
 	[System.Serializable]
 	public class GameState {
 
@@ -19,9 +20,7 @@ namespace GameSystems {
 		public int[] characterLineIndices; 
 
 		public GameState () {
-
 			characterLineIndices = new int[Enum.GetValues(typeof(ActorName)).Length];
-			Debug.Log (Enum.GetValues (typeof(ActorName)).Length);
 		}
 	}
 }

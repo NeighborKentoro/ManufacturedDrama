@@ -435,6 +435,11 @@ Prefab:
       propertyPath: actorName
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212852656971882482, guid: 4453f40a3c6406b44824dfaccaa7ce73,
+        type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4453f40a3c6406b44824dfaccaa7ce73, type: 2}
   m_IsPrefabParent: 0
@@ -749,12 +754,12 @@ Prefab:
     - target: {fileID: 224071192217988334, guid: 29f5bfaf4a7403d42b008c5d172b506b,
         type: 2}
       propertyPath: m_LocalPosition.x
-      value: 390
+      value: 377
       objectReference: {fileID: 0}
     - target: {fileID: 224071192217988334, guid: 29f5bfaf4a7403d42b008c5d172b506b,
         type: 2}
       propertyPath: m_LocalPosition.y
-      value: 219.5
+      value: 212
       objectReference: {fileID: 0}
     - target: {fileID: 224071192217988334, guid: 29f5bfaf4a7403d42b008c5d172b506b,
         type: 2}
